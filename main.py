@@ -8,12 +8,14 @@ from models import ML_Models, ANN_model
 
 # which problems to run
 RUN_P1 = True
-RUN_P2 = False
+RUN_P2 = True
 
-print_alarms = True     # whether to print ANN predicted alarm columns to terminal
-plot_loss_ann = True    # whether to plot ANN losses and save fig
+save_alarms = True     # whether to save ANN predicted alarm columns to file
+plot_loss = True    # whether to plot ANN losses and save fig
+save_metrics = True
 
 # logging
+run_id = datetime.now().strftime('%Y%m%d_%H%M%S')
 log_path = f"outputs/run_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 tee = Logger(log_path)
 sys.stdout = tee
@@ -35,7 +37,15 @@ if RUN_P1:
     print('\n--- Evaluate ---')
     ml.evaluate()
     ml.feature_importance('Random Forest')
-    ml.predict_files()
+    pred_pcts = ml.predict_files()
+
+    if plot_loss:
+        ml.plot_confusion_matrices(run_id)
+        ml.plot_roc_curves(run_id)
+        ml.plot_feature_importance(run_id)
+
+    if save_metrics:
+        ml.save_metrics_csv(run_id, pred_pcts)
 
 # P2 - ANN model
 if RUN_P2:
@@ -46,10 +56,15 @@ if RUN_P2:
     ann = ANN_model(ds, epochs=100, lr=1e-3, batch_size=64)
     ann.build_and_train()
     ann.evaluate()
-    if plot_loss_ann:
-        ann.plot_loss()
+    if plot_loss:
+        ann.plot_loss(run_id)
+        ann.plot_confusion_matrix(run_id)
+        ann.plot_roc_curve(run_id)
+    
+    if save_metrics:
+        ann.save_metrics_csv(run_id)
 
-    if print_alarms:
+    if save_alarms:
         preds_06 = ann.predict_column(ds.X_pred_06)
         preds_09 = ann.predict_column(ds.X_pred_09)
         pred_df = pd.DataFrame({
@@ -58,8 +73,8 @@ if RUN_P2:
             'predicted_alarm': list(preds_06) + list(preds_09),
         })
         pred_df['predicted_alarm_label'] = pred_df['predicted_alarm'].map({0: 'Normal', 1: 'Fault'})
-        pred_df.to_csv('outputs/ann_predicted_alarms.csv', index=False)
-        print("Predicted alarm columns saved to outputs/ann_predicted_alarms.csv")
+        pred_df.to_csv(f'outputs/ann_predicted_alarms_{run_id}.csv', index=False)
+        print(f"Predicted alarm columns saved to outputs/ann_predicted_alarms_{run_id}.csv")
 
     ann.predict_files()
 
