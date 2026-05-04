@@ -1,0 +1,4 @@
+run_id,model,accuracy,precision_fault,recall_fault,f1_fault,pred_06_pct,verdict_06,pred_09_pct,verdict_09
+20260504_175416,Logistic Regression,1.0,1.0,1.0,1.0,0.0,No,58.72,Yes
+20260504_175416,Random Forest,1.0,1.0,1.0,1.0,0.0,No,0.08,Yes
+20260504_175416,Gradient Boosting,1.0,1.0,1.0,1.0,0.0,No,49.37,Yes

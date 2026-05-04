@@ -1,0 +1,102 @@
+Loading data
+Train: 1862 rows | Test: 466 rows
+Fault rate (train): 27.2%
+Features: 67
+
+--------------------------------------------------
+EMCH 502 - Problem 1: ML Models
+>
+Training Logistic Regression
+Training Random Forest
+Training Gradient Boosting
+
+--- Evaluate ---
+  Logistic Regression  |  Accuracy: 1.0000
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00       339
+       Fault       1.00      1.00      1.00       127
+
+    accuracy                           1.00       466
+   macro avg       1.00      1.00      1.00       466
+weighted avg       1.00      1.00      1.00       466
+
+  Random Forest  |  Accuracy: 1.0000
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00       339
+       Fault       1.00      1.00      1.00       127
+
+    accuracy                           1.00       466
+   macro avg       1.00      1.00      1.00       466
+weighted avg       1.00      1.00      1.00       466
+
+  Gradient Boosting  |  Accuracy: 1.0000
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00       339
+       Fault       1.00      1.00      1.00       127
+
+    accuracy                           1.00       466
+   macro avg       1.00      1.00      1.00       466
+weighted avg       1.00      1.00      1.00       466
+
+
+Top 10 features (Random Forest):
+ABSOLUTE1    0.175482
+ABSOLUTE4    0.114767
+MACHINE1     0.112190
+MACHINE7     0.094214
+EMERGENCY    0.057702
+MACHINE4     0.056647
+ABSOLUTE3    0.047942
+MACHINE3     0.046263
+LOAD2        0.046042
+LOAD6        0.035043
+
+---EMCH 502 P1 Predictions---
+Abnormal = >0.01% of rows predicted as fault
+
+[Logistic Regression]
+  FOC_20190801_06: 0.0% fault rows → Abnormal: No
+  FOC_20190812_09: 58.7% fault rows → Abnormal: Yes
+[Random Forest]
+  FOC_20190801_06: 0.0% fault rows → Abnormal: No
+  FOC_20190812_09: 0.1% fault rows → Abnormal: Yes
+[Gradient Boosting]
+  FOC_20190801_06: 0.0% fault rows → Abnormal: No
+  FOC_20190812_09: 49.4% fault rows → Abnormal: Yes
+P1 metrics saved to outputs/p1_metrics.csv
+
+--------------------------------------------------
+EMCH 502 - Problem 2 (Graduate): ANN
+>
+
+Training ANN on cuda for 100 epochs
+  Epoch  10/100 — train: 0.0079  val: 0.0063
+  Epoch  20/100 — train: 0.0031  val: 0.0014
+  Epoch  30/100 — train: 0.0006  val: 0.0015
+  Epoch  40/100 — train: 0.0005  val: 0.0020
+  Epoch  50/100 — train: 0.0003  val: 0.0065
+  Epoch  60/100 — train: 0.0003  val: 0.0078
+  Epoch  70/100 — train: 0.0002  val: 0.0074
+  Epoch  80/100 — train: 0.0003  val: 0.0080
+  Epoch  90/100 — train: 0.0003  val: 0.0065
+  Epoch 100/100 — train: 0.0002  val: 0.0056
+
+  ANN  |  Accuracy: 0.9979
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00       339
+       Fault       0.99      1.00      1.00       127
+
+    accuracy                           1.00       466
+   macro avg       1.00      1.00      1.00       466
+weighted avg       1.00      1.00      1.00       466
+
+ANN metrics saved to outputs/ann_metrics.csv
+Predicted alarm columns saved to outputs/ann_predicted_alarms_20260504_175416.csv
+
+--- ANN P1 Predictions ---
+  FOC_20190801_06: 0.0% fault rows → Abnormal: No
+  FOC_20190812_09: 58.4% fault rows → Abnormal: Yes

@@ -174,10 +174,10 @@ class _FaultNet(nn.Module):
         self.net = nn.Sequential(
             nn.Linear(input_dim, 64),
             nn.ReLU(),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Linear(64, 32),
             nn.ReLU(),
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Linear(32, 1),
         )
 
@@ -257,7 +257,7 @@ class ANN_model:
             Xt = self._to_tensors(X)
             with torch.no_grad():
                 fault_pct = (torch.sigmoid(self.model(Xt)) >= 0.5).float().mean().item() * 100
-            verdict = 'Yes' if fault_pct > 1 else 'No'
+            verdict = 'Yes' if fault_pct > 0.01 else 'No'
             print(f"  {fname}: {fault_pct:.1f}% fault rows → Abnormal: {verdict}")
 
     def predict_column(self,X):

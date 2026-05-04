@@ -7,12 +7,12 @@ from helpers import Dataset, Logger
 from models import ML_Models, ANN_model
 
 # which problems to run
-RUN_P1 = True
+RUN_P1 = False
 RUN_P2 = True
 
 save_alarms = True     # whether to save ANN predicted alarm columns to file
-plot_loss = True    # whether to plot ANN losses and save fig
-save_metrics = True
+plot_loss = True    # whether to plot figures
+save_metrics = True     # whether to save metrics
 
 # logging
 run_id = datetime.now().strftime('%Y%m%d_%H%M%S')

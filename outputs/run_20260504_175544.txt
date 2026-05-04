@@ -1,0 +1,32 @@
+Loading data
+Train: 1862 rows | Test: 466 rows
+Fault rate (train): 27.2%
+Features: 67
+
+--------------------------------------------------
+EMCH 502 - Problem 2 (Graduate): ANN
+>
+
+Training ANN on cuda for 50 epochs
+  Epoch  10/50 — train: 0.0087  val: 0.0069
+  Epoch  20/50 — train: 0.0025  val: 0.0005
+  Epoch  30/50 — train: 0.0007  val: 0.0005
+  Epoch  40/50 — train: 0.0006  val: 0.0001
+  Epoch  50/50 — train: 0.0004  val: 0.0002
+
+  ANN  |  Accuracy: 1.0000
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00       339
+       Fault       1.00      1.00      1.00       127
+
+    accuracy                           1.00       466
+   macro avg       1.00      1.00      1.00       466
+weighted avg       1.00      1.00      1.00       466
+
+ANN metrics saved to outputs/ann_metrics.csv
+Predicted alarm columns saved to outputs/ann_predicted_alarms_20260504_175544.csv
+
+--- ANN P1 Predictions ---
+  FOC_20190801_06: 0.0% fault rows → Abnormal: No
+  FOC_20190812_09: 0.0% fault rows → Abnormal: No

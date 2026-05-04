@@ -1,0 +1,47 @@
+Loading data
+Train: 1862 rows | Test: 466 rows
+Fault rate (train): 27.2%
+Features: 67
+
+--------------------------------------------------
+EMCH 502 - Problem 2 (Graduate): ANN
+>
+
+Training ANN on cuda for 200 epochs
+  Epoch  10/200 — train: 0.0091  val: 0.0052
+  Epoch  20/200 — train: 0.0016  val: 0.0008
+  Epoch  30/200 — train: 0.0007  val: 0.0005
+  Epoch  40/200 — train: 0.0008  val: 0.0002
+  Epoch  50/200 — train: 0.0004  val: 0.0006
+  Epoch  60/200 — train: 0.0002  val: 0.0026
+  Epoch  70/200 — train: 0.0002  val: 0.0041
+  Epoch  80/200 — train: 0.0002  val: 0.0074
+  Epoch  90/200 — train: 0.0002  val: 0.0079
+  Epoch 100/200 — train: 0.0002  val: 0.0072
+  Epoch 110/200 — train: 0.0002  val: 0.0030
+  Epoch 120/200 — train: 0.0001  val: 0.0054
+  Epoch 130/200 — train: 0.0001  val: 0.0047
+  Epoch 140/200 — train: 0.0001  val: 0.0045
+  Epoch 150/200 — train: 0.0001  val: 0.0023
+  Epoch 160/200 — train: 0.0001  val: 0.0023
+  Epoch 170/200 — train: 0.0001  val: 0.0000
+  Epoch 180/200 — train: 0.0001  val: 0.0001
+  Epoch 190/200 — train: 0.0001  val: 0.0004
+  Epoch 200/200 — train: 0.0001  val: 0.0002
+
+  ANN  |  Accuracy: 1.0000
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00       339
+       Fault       1.00      1.00      1.00       127
+
+    accuracy                           1.00       466
+   macro avg       1.00      1.00      1.00       466
+weighted avg       1.00      1.00      1.00       466
+
+ANN metrics saved to outputs/ann_metrics.csv
+Predicted alarm columns saved to outputs/ann_predicted_alarms_20260504_175618.csv
+
+--- ANN P1 Predictions ---
+  FOC_20190801_06: 0.0% fault rows → Abnormal: No
+  FOC_20190812_09: 58.5% fault rows → Abnormal: Yes
